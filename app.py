@@ -80,6 +80,40 @@ st.dataframe(
     top_anomalies,
     use_container_width=True
 )
+# Exploratory Data Analysis
+st.subheader("📊 Exploratory Data Analysis")
+
+eda_images = [
+    ("Invariant Mass Distribution", "invariant_mass_distribution.png"),
+    ("E1 vs E2 Energy Distribution", "E1_E2_energy_distribution.png"),
+    ("PT1 vs PT2 Distribution", "pt1_pt2_distribution.png"),
+    ("Particle Momentum Components", "particle1_momentum_components.png"),
+    ("Eta1 Distribution", "eta1_distribution.png"),
+    ("Phi1 Distribution", "phi1_distribution.png"),
+    ("Charge Distribution", "charge_distribution.png"),
+    ("Correlation Matrix", "correlation_matrix.png"),
+    ("Invariant Mass Boxplot", "M_boxplot.png")
+]
+
+for i in range(0, len(eda_images), 2):
+    col1, col2 = st.columns(2)
+
+    with col1:
+        title, image = eda_images[i]
+        st.write(f"**{title}**")
+        if os.path.exists(image):
+            st.image(image, use_container_width=True)
+        else:
+            st.warning(f"{image} not found.")
+
+    with col2:
+        if i + 1 < len(eda_images):
+            title, image = eda_images[i + 1]
+            st.write(f"**{title}**")
+            if os.path.exists(image):
+                st.image(image, use_container_width=True)
+            else:
+                st.warning(f"{image} not found.")
 
 # Explainable AI
 st.subheader("🧠 Explainable AI – SHAP")
